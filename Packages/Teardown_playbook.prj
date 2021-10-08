@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PROJECT format-rev="10" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<NAME xsi:type="string">Projekt</NAME>
+	<ENABLED xsi:type="boolean">True</ENABLED>
+	<REPORTING xsi:type="boolean">True</REPORTING>
+	<ID xsi:type="string">a0e28acc282d11ecb2fde04f43956b81</ID>
+	<COMPONENTS>
+		<COMPONENT format-rev="6" xsi:type="packageTest">
+			<NAME xsi:type="string">Teardown_playbook</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">d2f7f4a6283911eca987e04f43956b81</ID>
+			<COMPONENTS/>
+			<PACKAGE-REF xsi:type="expressionref">
+				<PATH-EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="string">Teardown_playbook.pkg</VALUE>
+				</PATH-EXPRESSION>
+			</PACKAGE-REF>
+		</COMPONENT>
+		<COMPONENT format-rev="6" xsi:type="configChange">
+			<NAME xsi:type="string">Konfigurationswechsel</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">e02b1cf0282d11ecb171e04f43956b81</ID>
+			<TOOL-TREATMENTS/>
+		</COMPONENT>
+	</COMPONENTS>
+</PROJECT>

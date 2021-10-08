@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="25e31480f3b111e8a7dde04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Restricts a signal inside a given range defined by the parameter &quot;limit&quot;.</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="97f77ca1f3b111e89610e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">input</NAME>
+			<DESCRIPTION xsi:type="string">Input signal</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+		<PARAMETER uuid="9e9a8d8ff3b111e88465e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">output</NAME>
+			<DESCRIPTION xsi:type="string">limited output signal</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="d0c989b0f3b111e8b18de04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="string">limit</NAME>
+			<DESCRIPTION xsi:type="string">Sets the limit for the output signal.</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    # Get values from the input
+    limit=parameters[&quot;limit&quot;]
+    input=event.GetValue(&quot;input&quot;)
+    time=event.GetTime()
+    # If limit has no value pass the input through
+    if (limit is None):
+        dataContainer.EmitSignal(time,&quot;output&quot;,input)
+    # If limit has a value restrict the signal in the range
+    elif (input &gt;= limit):
+        dataContainer.EmitSignal(time,&quot;output&quot;,limit)
+    elif (input &lt;= -limit):
+        dataContainer.EmitSignal(time,&quot;output&quot;,-limit)
+    # If input is inside the given range pass it through
+    else:
+        dataContainer.EmitSignal(time,&quot;output&quot;,input)
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">input</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

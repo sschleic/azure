@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="db7a7ee1f24a11e8a6cae04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="unicode">Vergleich ob Eingangsignale der Berechnung 0 sind</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="69649ab0f24b11e890e9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="unicode">Ego_ax</NAME>
+			<DESCRIPTION xsi:type="unicode">Beschleunigung des EGO Fahrzeug im Globalen System in x-Richtung</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="683fd451f24c11e8be6ee04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="unicode">Ego_ay</NAME>
+			<DESCRIPTION xsi:type="unicode">Beschleunigung des EGO Fahrzeug im Globalen System in y-Richtung</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="7d699d6ef24c11e89527e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="unicode">Ego_h</NAME>
+			<DESCRIPTION xsi:type="unicode">Heading des EGO Fahrzeug</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="c260ebb0f24f11e894d9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="unicode">Ego_a_h</NAME>
+			<DESCRIPTION xsi:type="unicode">Heading des Beschleunigungsvektors</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="f774495ef31b11e88254e04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">Error</NAME>
+			<DESCRIPTION xsi:type="unicode">Schwellwert für Berücksichtigung</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="unicode">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="unicode">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="unicode">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Next(event, hold, dataContainer, parameters, report):
+    err=parameters[&quot;Error&quot;]
+    ax=event.GetValue(&quot;Ego_ax&quot;)
+    ay=event.GetValue(&quot;Ego_ay&quot;)
+    h=event.GetValue(&quot;Ego_h&quot;)
+    time=event.GetTime()
+    if (math.fabs(ax)&lt;=err or math.fabs(ay)&lt;=err) :
+        dataContainer.EmitSignal(time,&quot;Ego_a_h&quot;,0)
+    else:
+        dataContainer.EmitSignal(time,&quot;Ego_a_h&quot;,(h-math.tan(ay/ax)))
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="unicode">Ego_ax</ELEMENT>
+				<ELEMENT xsi:type="unicode">Ego_ay</ELEMENT>
+				<ELEMENT xsi:type="unicode">Ego_h</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

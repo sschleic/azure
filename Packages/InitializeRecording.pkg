@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PACKAGE format-rev="7" prog-version="2020.3.101705+729f1b14079e" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test package.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<ATTRIBUTES>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Type</NAME>
+				<VALUE xsi:type="string">Library</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Status</NAME>
+				<VALUE xsi:type="string">Review</VALUE>
+			</ATTRIBUTE>
+		</ATTRIBUTES>
+		<DESCRIPTION xsi:type="string">Initializes the recording of CarMaker signals. Following signals are recorded:
+Car.YawAcc 
+Car.ax 
+Car.ay 
+Car.Yaw 
+Car.Road.Lane.Act.LaneId 
+Car.Road.Path.devDist 
+Car.tx 
+Car.ty 
+Car.YawVel 
+Car.vx 
+Car.vy 
+Sensor.Object.RadarECUTEST.Obj.Target01.NearPnt.ds.x 
+Traffic.Target01.a_0.x 
+Traffic.Target01.a_0.y 
+Traffic.Target01.rz 
+Traffic.Target01.LinkObjId 
+Traffic.Target01.Lane.Act.LaneId 
+Traffic.Target01.tRoad 
+Traffic.Target01.tx 
+Traffic.Target01.ty 
+Traffic.Target01.v_0.x 
+Traffic.Target01.v_0.y 
+Traffic.Target01.a_0.x 
+Traffic.Target01.a_0.y 
+Traffic.Target01.YawVel 
+Traffic.Target02.rz 
+Traffic.Target02.LinkObjId 
+Traffic.Target02.Lane.Act.LaneId 
+Traffic.Target02.tRoad 
+Traffic.Target02.tx 
+Traffic.Target02.ty 
+Traffic.Target02.v_0.x 
+Traffic.Target02.v_0.y 
+Traffic.Target03.rz 
+Traffic.Target03.LinkObjId 
+Traffic.Target03.Lane.Act.LaneId 
+Traffic.Target03.tRoad 
+Traffic.Target03.tx 
+Traffic.Target03.ty 
+Traffic.Target03.v_0.x 
+Traffic.Target03.v_0.y 
+Traffic.Target04.rz 
+Traffic.Target04.LinkObjId 
+Traffic.Target04.Lane.Act.LaneId 
+Traffic.Target04.tRoad 
+Traffic.Target04.tx 
+Traffic.Target04.ty 
+Traffic.Target04.v_0.x 
+Traffic.Target04.v_0.y 
+DM.SpeedLimit 
+AccelCtrl.ACC.DesiredSpd</DESCRIPTION>
+		<VERSION xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">steadyStateFlag</NAME>
+			<DESCRIPTION xsi:type="string">Bool value to determine if a steady state should be reached before the signal recording starts</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">False</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">SendTclCommand</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">SendTclCommand</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TESTSTEPS xsi:type="testCase">
+		<TESTSTEP format-rev="3" id="271481" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+			<ACTION xsi:type="I18NItem">
+				<MULTILANGDATA>
+					<ELEMENT dkey="de_DE">
+						<DVALUE xsi:type="string">Initialize recording</DVALUE>
+					</ELEMENT>
+					<ELEMENT dkey="en_US">
+						<DVALUE xsi:type="string">Initialize recording</DVALUE>
+					</ELEMENT>
+				</MULTILANGDATA>
+				<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+			</ACTION>
+			<TESTSTEP format-rev="4" id="275212" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">StartSim</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP id="275223" name="TsWait" xsi:type="utility-62d5a961-4fef-11dc-9944-0013728784ee">
+				<TIME format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="integer">100</VALUE>
+				</TIME>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="275236" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">StopSim</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="271467" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">OutQuantsDelAll</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="271470" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">OutQuantsRestoreDefs</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="271473" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">QuantSubscribe {Time}</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="3" id="273902" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+				<ACTION xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">Add quantity</DVALUE>
+						</ELEMENT>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string">Add quantity</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</ACTION>
+				<TESTSTEP format-rev="4" id="271476" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.YawAcc Car.YawVel Car.Yaw</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="273916" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.ax Car.ay</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="273934" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Road.Lane.Act.LaneId</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="340606" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Road.Lane.Act.Width</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="273939" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Road.Path.DevDist</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="7b1d7210-5dde-4b8d-9043-3757c00e1f51" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Road.Route.DevDist</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="273944" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.tx Car.ty</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="273949" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.vx Car.vy</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="f8f40269-cbf5-4ebf-a798-b8505ac17965" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Fr1.vx Car.Fr1.vy</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="7f645798-e6d9-450a-b2cb-6d4413ef21e5" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Distance</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="0eabe0aa-8a96-4d0c-a2f3-d983d33400b2" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd Car.Road.sRoad</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="3" id="274483" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+					<ACTION xsi:type="I18NItem">
+						<MULTILANGDATA>
+							<ELEMENT dkey="de_DE">
+								<DVALUE xsi:type="string">Traffic Object 00</DVALUE>
+							</ELEMENT>
+							<ELEMENT dkey="en_US">
+								<DVALUE xsi:type="string">Traffic Object 00</DVALUE>
+							</ELEMENT>
+						</MULTILANGDATA>
+						<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+					</ACTION>
+					<TESTSTEP format-rev="4" id="273964" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.rz</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273969" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.LinkObjId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273974" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.Lane.Act.LaneId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="e45904b1-19fa-471b-b667-a939abe2f91e" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.LatVel</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273979" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.tRoad Traffic.Target01.t2Ref</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="e1e22f16-7559-4ee9-914f-078a0b2d2691" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.sRoad</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273984" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.tx Traffic.Target01.ty</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273989" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.v_0.x Traffic.Target01.v_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274113" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.a_0.x Traffic.Target01.a_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274118" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target01.YawVel</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="273954" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target01.NearPnt.ds.x</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274656" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target01.NearPnt.ds.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+				</TESTSTEP>
+				<TESTSTEP format-rev="3" id="274446" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+					<ACTION xsi:type="I18NItem">
+						<MULTILANGDATA>
+							<ELEMENT dkey="de_DE">
+								<DVALUE xsi:type="string">Traffic Object 01</DVALUE>
+							</ELEMENT>
+							<ELEMENT dkey="en_US">
+								<DVALUE xsi:type="string">Traffic Object 01</DVALUE>
+							</ELEMENT>
+						</MULTILANGDATA>
+						<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+					</ACTION>
+					<TESTSTEP format-rev="4" id="274123" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.rz</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274128" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.LinkObjId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274133" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.Lane.Act.LaneId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274138" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.tRoad</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274176" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.tx Traffic.Target02.ty</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274181" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.v_0.x Traffic.Target02.v_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274186" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.a_0.x Traffic.Target02.a_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274314" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target02.YawVel</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274708" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target02.NearPnt.ds.x</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274711" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target02.NearPnt.ds.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+				</TESTSTEP>
+				<TESTSTEP format-rev="3" id="274448" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+					<ACTION xsi:type="I18NItem">
+						<MULTILANGDATA>
+							<ELEMENT dkey="de_DE">
+								<DVALUE xsi:type="string">Traffic Object 02</DVALUE>
+							</ELEMENT>
+							<ELEMENT dkey="en_US">
+								<DVALUE xsi:type="string">Traffic Object 02</DVALUE>
+							</ELEMENT>
+						</MULTILANGDATA>
+						<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+					</ACTION>
+					<TESTSTEP format-rev="4" id="274383" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.rz</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274386" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.LinkObjId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274389" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.Lane.Act.LaneId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274392" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.tRoad</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274395" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.tx Traffic.Target03.ty</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274398" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.v_0.x Traffic.Target03.v_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274401" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.a_0.x Traffic.Target03.a_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274404" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target03.YawVel</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274732" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target03.NearPnt.ds.x</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274735" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target03.NearPnt.ds.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+				</TESTSTEP>
+				<TESTSTEP format-rev="3" id="274545" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+					<ACTION xsi:type="I18NItem">
+						<MULTILANGDATA>
+							<ELEMENT dkey="de_DE">
+								<DVALUE xsi:type="string">Traffic Object 03</DVALUE>
+							</ELEMENT>
+							<ELEMENT dkey="en_US">
+								<DVALUE xsi:type="string">Traffic Object 03</DVALUE>
+							</ELEMENT>
+						</MULTILANGDATA>
+						<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+					</ACTION>
+					<TESTSTEP format-rev="4" id="274529" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.rz</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274531" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.LinkObjId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274533" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.Lane.Act.LaneId</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274535" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.tRoad</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274537" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.tx Traffic.Target04.ty</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274539" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.v_0.x Traffic.Target04.v_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274541" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.a_0.x Traffic.Target04.a_0.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274543" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Traffic.Target04.YawVel</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274756" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target04.NearPnt.ds.x</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+					<TESTSTEP format-rev="4" id="274759" xsi:type="tsJob">
+						<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+						<JOB-PARAMETER xsi:type="tsJobParameter">
+							<NAME xsi:type="string">tclCommand</NAME>
+							<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+								<VALUE xsi:type="string">OutQuantsAdd Sensor.Object.RadarECUTEST.Obj.Target04.NearPnt.ds.y</VALUE>
+							</EXPRESSION>
+						</JOB-PARAMETER>
+					</TESTSTEP>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="274630" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd DM.SpeedLimit</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="274643" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">OutQuantsAdd AccelCtrl.ACC.DesiredSpd</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+			</TESTSTEP>
+			<TESTSTEP format-rev="3" id="326776" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+				<ACTION xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">Set save mode</DVALUE>
+						</ELEMENT>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string">Set save mode</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</ACTION>
+				<TESTSTEP id="338938" name="TsIfThenElse" xsi:type="utility-3609c41e-4fef-11dc-899a-0013728784ee">
+					<CONDITION xsi:type="compareOpBaseExpression">
+						<NAME xsi:type="string">==</NAME>
+						<FIRST-COMPONENT xsi:type="varBaseExpression">
+							<NAME xsi:type="string">steadyStateFlag</NAME>
+						</FIRST-COMPONENT>
+						<SECOND-COMPONENT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="boolean">True</VALUE>
+						</SECOND-COMPONENT>
+					</CONDITION>
+					<THEN id="338936" xsi:type="ifThenElseNode">
+						<COMMENT-I18N xsi:type="I18NItem">
+							<MULTILANGDATA>
+								<ELEMENT dkey="de_DE">
+									<DVALUE xsi:type="string">Used when the CarMaker scenario shall includes a delayed recording start!</DVALUE>
+								</ELEMENT>
+								<ELEMENT dkey="en_US">
+									<DVALUE xsi:type="string">Used when the CarMaker scenario shall includes a delayed recording start!</DVALUE>
+								</ELEMENT>
+							</MULTILANGDATA>
+							<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+						</COMMENT-I18N>
+						<TESTSTEP format-rev="4" id="326493" xsi:type="tsJob">
+							<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+							<JOB-PARAMETER xsi:type="tsJobParameter">
+								<NAME xsi:type="string">tclCommand</NAME>
+								<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+									<VALUE xsi:type="string">SaveMode collect</VALUE>
+								</EXPRESSION>
+							</JOB-PARAMETER>
+						</TESTSTEP>
+					</THEN>
+					<ELSE id="338937" xsi:type="ifThenElseNode">
+						<COMMENT-I18N xsi:type="I18NItem">
+							<MULTILANGDATA>
+								<ELEMENT dkey="de_DE">
+									<DVALUE xsi:type="string">Used when the CarMaker scenario does not include a delayed recording start.</DVALUE>
+								</ELEMENT>
+								<ELEMENT dkey="en_US">
+									<DVALUE xsi:type="string">Used when the CarMaker scenario does not include a delayed recording start.</DVALUE>
+								</ELEMENT>
+							</MULTILANGDATA>
+							<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+						</COMMENT-I18N>
+						<TESTSTEP format-rev="4" id="271479" xsi:type="tsJob">
+							<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+							<JOB-PARAMETER xsi:type="tsJobParameter">
+								<NAME xsi:type="string">tclCommand</NAME>
+								<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+									<VALUE xsi:type="string">SaveMode save</VALUE>
+								</EXPRESSION>
+							</JOB-PARAMETER>
+						</TESTSTEP>
+					</ELSE>
+				</TESTSTEP>
+			</TESTSTEP>
+		</TESTSTEP>
+	</TESTSTEPS>
+</PACKAGE>

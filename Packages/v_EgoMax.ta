@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ANALYSIS-PACKAGE prog-version="2020.3.101705+729f1b14079e" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test analysisPackage.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<ATTRIBUTES>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Id</NAME>
+				<VALUE xsi:type="string">Veh_0037</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_IdText</NAME>
+				<VALUE xsi:type="string">v_EgoMax</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Unit</NAME>
+				<VALUE xsi:type="string">m/s</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Description</NAME>
+				<VALUE xsi:type="string">Calculates the maximum overall velocity of the ego vehicle.</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerContact</NAME>
+				<VALUE xsi:type="string">kevin.kleebusch@fdtech.de</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Designer</NAME>
+				<VALUE xsi:type="string">Kevin Kleebusch</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerDepartment</NAME>
+				<VALUE xsi:type="string">CoC_01</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Type</NAME>
+				<VALUE xsi:type="string">KPI</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Status</NAME>
+				<VALUE xsi:type="string">Released</VALUE>
+			</ATTRIBUTE>
+		</ATTRIBUTES>
+		<DESCRIPTION xsi:type="string">Calculates the maximum overall velocity of the ego vehicle.
+Level: Test Case
+Unit: metre per second [m/s]</DESCRIPTION>
+		<VERSION xsi:type="string">1.0</VERSION>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" out="true" xsi:type="variable">
+			<NAME xsi:type="string">v_EgoMax</NAME>
+			<DESCRIPTION xsi:type="string">Signal maximum value [m/s]</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">0</DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">isVerificationCriteria</NAME>
+			<DESCRIPTION xsi:type="string">Decider whether verification shall be done</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">True</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">logicalOperator</NAME>
+			<DESCRIPTION xsi:type="string">Operator for comparison with threshold</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">&lt;=</DVALUE>
+						</ELEMENT>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string">&lt;=</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">threshold</NAME>
+			<DESCRIPTION xsi:type="string">Threshold for verification</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="float">69.4</DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">scenarioRelativePath</NAME>
+			<DESCRIPTION xsi:type="string">Relative path to the scenario used in this KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">testMissionPath</NAME>
+			<DESCRIPTION xsi:type="string">Path of the project which executes the KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">jsonFlag</NAME>
+			<DESCRIPTION xsi:type="string">Decider if the json should be writen</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">False</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">v_Ego</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">v_Ego</SIGNAL-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TRACE-ANALYSIS format-rev="3" uuid="85ddf08ab81011e9a11c00e18c8fe4bc" xsi:type="traceAnalysis">
+		<NAME xsi:type="string">Analysis package</NAME>
+		<ANALYSISITEM format-rev="1" uuid="928f9cecb81011e9a28900e18c8fe4bc" xsi:type="episode">
+			<NAME xsi:type="string">v_EgoMax</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="928f9cedb81011e9854800e18c8fe4bc" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">Calculate v_EgoMax</NAME>
+				<DESCRIPTION xsi:type="string">Calculates the maximum overall velocity of the ego vehicle</DESCRIPTION>
+				<SIGNAL-BINDING xsi:type="signalBinding">
+					<PARAMETER dkey="Signal">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">v_Ego</REF-SIGNAL-NAME>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="Maximum">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">v_EgoMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CalculateMaxOwn</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="3b4d957ed53711e99968a86daa65f3c3" xsi:type="episode">
+			<NAME xsi:type="string">CheckThreshold</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="3b4d957fd53711e99ee3a86daa65f3c3" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">CheckThreshold</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="isVerificationCriteria">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">isVerificationCriteria</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="logicalOperator">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">logicalOperator</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="threshold">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">threshold</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="value">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">v_EgoMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CheckThreshold</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="ef2e34da11f111ea95340050569b68ac" xsi:type="episode">
+			<NAME xsi:type="string">json write</NAME>
+			<DESCRIPTION xsi:type="string">Writes the json if the given parameter is true</DESCRIPTION>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="ef2e34db11f111eaa4fa0050569b68ac" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">WriteJsonFile</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="jsonFlag">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">jsonFlag</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="projectPath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">testMissionPath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="resultValue">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">v_EgoMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="scenarioRelativePath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">scenarioRelativePath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">WriteJsonFile</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<VIRTUAL-SIGNALS-MANAGER xsi:type="virtualSignalsManager">
+			<VIRTUAL-SIGNALS>
+				<VIRTUAL-SIGNAL uuid="ab2729bab81011e9a4ba00e18c8fe4bc" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">v_Ego</NAME>
+					<MAPPING-NAME xsi:type="string">v_Ego</MAPPING-NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+				</VIRTUAL-SIGNAL>
+			</VIRTUAL-SIGNALS>
+		</VIRTUAL-SIGNALS-MANAGER>
+	</TRACE-ANALYSIS>
+</ANALYSIS-PACKAGE>

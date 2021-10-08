@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PROJECT format-rev="10" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<NAME xsi:type="string">Projekt</NAME>
+	<ENABLED xsi:type="boolean">True</ENABLED>
+	<REPORTING xsi:type="boolean">True</REPORTING>
+	<ID xsi:type="string">a0e28acc282d11ecb2fde04f43956b81</ID>
+	<COMPONENTS>
+		<COMPONENT format-rev="6" xsi:type="configChange">
+			<NAME xsi:type="string">Konfigurationswechsel</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">aa02857a282d11ec8804e04f43956b81</ID>
+			<LOAD-TEST-CONFIG xsi:type="string">azure.tcf</LOAD-TEST-CONFIG>
+			<LOAD-TEST-BENCH-CONFIG xsi:type="string">Example_CarMaker_Adapter.tbc</LOAD-TEST-BENCH-CONFIG>
+			<FORCE-RESTART xsi:type="boolean">True</FORCE-RESTART>
+			<TOOL-TREATMENTS/>
+		</COMPONENT>
+		<COMPONENT format-rev="6" xsi:type="packageTest">
+			<NAME xsi:type="string">Setup_playbook</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">8f65b77a283911eca1fce04f43956b81</ID>
+			<COMPONENTS/>
+			<PACKAGE-REF xsi:type="expressionref">
+				<PATH-EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="string">Setup_playbook.pkg</VALUE>
+				</PATH-EXPRESSION>
+			</PACKAGE-REF>
+		</COMPONENT>
+	</COMPONENTS>
+</PROJECT>

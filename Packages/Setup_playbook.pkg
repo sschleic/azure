@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PACKAGE format-rev="7" prog-version="2021.3.116659+ca0cd4c506b0" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test package.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<DESCRIPTION xsi:type="string"/>
+		<VERSION xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">scenario_name</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">azure_demo_follow</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">EnableRecording</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">EnableRecording</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">LoadScenario</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">LoadScenario</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">SendTclCommand</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">SendTclCommand</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">StartCarmaker</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">StartCarmaker</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TESTSTEPS xsi:type="testCase">
+		<TESTSTEP format-rev="3" id="f387cfd1-f27a-4059-8245-12769ecc144d" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+			<ACTION xsi:type="I18NItem">
+				<MULTILANGDATA>
+					<ELEMENT dkey="de_DE">
+						<DVALUE xsi:type="string">Init CarMaker</DVALUE>
+					</ELEMENT>
+				</MULTILANGDATA>
+				<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+			</ACTION>
+			<TESTSTEP format-rev="4" id="21cea86c-8cca-400c-a56c-5a7b73309bf4" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">StartCarmaker</MAPPING-REF>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="27f19738-3cf7-47b6-90b6-f338c077cb69" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">LoadScenario</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">scenarioName</NAME>
+					<EXPRESSION xsi:type="varBaseExpression">
+						<NAME xsi:type="string">scenario_name</NAME>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="308879f2-0af5-418c-92f0-0dad00e35cb6" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">Application start</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">timeout</NAME>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="fc72dcb3-a373-4c13-9d88-83d6b6405090" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">tclCommand</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="string">SetSimTimeAcc 200</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">timeout</NAME>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="4" id="fd99a179-c4d1-41f2-a5cd-8726fc09b6e6" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">EnableRecording</MAPPING-REF>
+			</TESTSTEP>
+		</TESTSTEP>
+	</TESTSTEPS>
+</PACKAGE>

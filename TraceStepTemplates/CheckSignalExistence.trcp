@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="a7783a8f4c0511e58be008edb9de9bdd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">This trace step checks if the signal has samples in the given trace.</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="b9eb48214c0511e5847a08edb9de9bdd" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal</NAME>
+			<DESCRIPTION xsi:type="string">The signal to analyze.</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="bc3deab04c0511e58cfd08edb9de9bdd" xsi:type="parameterDescription">
+			<NAME xsi:type="string">_invertExpectation</NAME>
+			<DESCRIPTION xsi:type="string">This parameter can change the expectation:
+False: SUCCESS if the signal has samples (default)
+True: SUCCESS if the signal has no samples</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">BOOLEAN</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="927539e1045811e9860300e18c8fe4bc" xsi:type="parameterDescription">
+			<NAME xsi:type="string">Existence</NAME>
+			<DESCRIPTION xsi:type="string">Gives a bool statement of the existence of the signal</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">BOOLEAN</PARAMETER-TYPE>
+			<PARAMETER-DIRECTION xsi:type="string">OUT</PARAMETER-DIRECTION>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Funktionskopf generiert, nicht editieren!
+def Init(dataContainer, parameters, report):
+    # set default value
+    dataContainer.sampleCounter = 0
+    dataContainer.startTime = None
+    dataContainer.endTime = None
+
+    # get parameters
+    dataContainer.invertExpectation = parameters[&quot;_invertExpectation&quot;]
+
+    # check parameters
+    if dataContainer.invertExpectation is None:
+        dataContainer.invertExpectation = False
+    
+    # check type
+    if not isinstance(dataContainer.invertExpectation, bool):
+        raise TypeError(&quot;The parameter 'invertExpectation' has no valid type (%s).&quot; % type(dataContainer.invertExpectation))
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Funktionskopf generiert, nicht editieren!
+def Finalize(dataContainer, parameters, report):
+    # normal check -&gt; invertExpectation == False 
+    if dataContainer.invertExpectation == False:
+        if dataContainer.sampleCounter &gt; 0:
+            report.SetResultSuccess()
+            report.SetResultText(&quot;%s samples are found between the time %2.3f and %2.3f.&quot; % (dataContainer.sampleCounter, dataContainer.startTime, dataContainer.endTime))
+        else:
+            report.SetResultFailed()
+            report.SetResultText(&quot;%s samples are found in the trace.&quot; % dataContainer.sampleCounter)
+        
+    # inverted check -&gt; invertExpectation == True
+    if dataContainer.invertExpectation == True:
+        if dataContainer.sampleCounter == 0:
+            report.SetResultSuccess()
+            report.SetResultText(&quot;%s samples are found in the trace.&quot; % dataContainer.sampleCounter)
+        else:
+            report.SetResultFailed()
+            report.SetResultText(&quot;%s samples are found between the time %2.3f and %2.3f.&quot; % (dataContainer.sampleCounter, dataContainer.startTime, dataContainer.endTime))
+        
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Funktionskopf generiert, nicht editieren!
+def Next(event, hold, dataContainer, parameters, report):
+    # get the time
+    time = event.GetTime()
+    
+    # count signal samples
+    dataContainer.sampleCounter += 1
+    if dataContainer.sampleCounter != None:
+        parameters[&quot;Existence&quot;] = 1
+    if dataContainer.sampleCounter == None:
+        parameters[&quot;Existence&quot;] = 0
+    
+    # store time
+    if dataContainer.startTime is None:
+        dataContainer.startTime = time
+    dataContainer.endTime = time
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">Signal</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="c50487de329211e489680024e8a0e567" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Generates a value for the maximum of the input signal.</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="e3d9e700329211e49bcc0024e8a0e567" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal</NAME>
+			<DESCRIPTION xsi:type="string">The signal for which the minimum and maximum will be calculated.</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="fcb4e4c0fa1911e8874aa0cec8c28b14" xsi:type="parameterDescription">
+			<NAME xsi:type="string">Maximum</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+			<PARAMETER-DIRECTION xsi:type="string">OUT</PARAMETER-DIRECTION>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    from collections import deque
+    
+    # set default values
+    dataContainer.emptySignal = True
+    dataContainer.max = None
+    dataContainer.time = deque()
+    parameters[&quot;Maximum&quot;] = 0
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    # get value and time from signal
+    value = event.GetValue(&quot;Signal&quot;) 				
+    time  = event.GetTime()
+
+    # get first value 
+    if dataContainer.max == None:
+        dataContainer.max = value
+
+    # get min/max values
+    dataContainer.max = max(dataContainer.max,value)
+    parameters[&quot;Maximum&quot;] = dataContainer.max
+    
+    # save time stamps
+    dataContainer.time.append(time)
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">Signal</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

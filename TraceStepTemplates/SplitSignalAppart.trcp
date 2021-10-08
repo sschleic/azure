@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="db7a7ee1f24a11e8a6cae04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Takes the data set from a CSV where 3 datapoints are stored in each time step and breaks them appart into 3 signals</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="69649ab0f24b11e890e9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">InputData</NAME>
+			<DESCRIPTION xsi:type="string">Input data set from the ROSbag converted CSV</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="683fd451f24c11e8be6ee04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal1</NAME>
+			<DESCRIPTION xsi:type="string">First value in the data set is assigned to signal 1</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+		<PARAMETER uuid="7d699d6ef24c11e89527e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal2</NAME>
+			<DESCRIPTION xsi:type="string">Second value in the data set is assigned to Signal2</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+		<PARAMETER uuid="c260ebb0f24f11e894d9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal3</NAME>
+			<DESCRIPTION xsi:type="string">Third value in the data set is assigned to Signal3</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList"/>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    #Get the values from the input data for the current time step
+    inputData=event.GetValue(&quot;InputData&quot;)
+    #save the current timestamp
+    time=event.GetTime()
+    #convert the data into a string, remove the brackets, split it into the 3 parts
+    splittedData = str(inputData)[1:-1].split(&quot;,&quot;)
+    #emit the values assigned to the current timestamp into new signals.
+    dataContainer.EmitSignal(time,&quot;Signal1&quot;,float(splittedData[0]))
+    dataContainer.EmitSignal(time,&quot;Signal2&quot;,float(splittedData[1]))
+    dataContainer.EmitSignal(time,&quot;Signal3&quot;,float(splittedData[2]))
+    
+    #if (math.fabs(ax)&lt;=err or math.fabs(ay)&lt;=err) :
+    #    dataContainer.EmitSignal(time,&quot;Ego_a_h&quot;,0)
+    #else:
+    #    dataContainer.EmitSignal(time,&quot;Ego_a_h&quot;,(h-math.tan(ay/ax)))
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">InputData</ELEMENT>
+				<ELEMENT xsi:type="string">Signal1</ELEMENT>
+				<ELEMENT xsi:type="string">Signal2</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

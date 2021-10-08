@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="b2f8e19ef3b711e8a0d5e04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Generation of a generic signal using a fixed value. Therefore a constant line with gradient 0 is the result.
+</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="d3736540f3b711e8b3c1e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">gen_sig</NAME>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+		<PARAMETER uuid="e394e78ca88011e9ae27e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">reference_signal</NAME>
+			<DESCRIPTION xsi:type="string">Signal to give the time reference.</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="da705600f3b711e8a2c6e04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="string">threshold</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    from collections import deque
+    
+    # set default values
+    dataContainer.emptySignal = True
+    dataContainer.time = deque()
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    thres=parameters[&quot;threshold&quot;]
+    time=event.GetTime(&quot;reference_signal&quot;)
+    dataContainer.EmitSignal(time,&quot;gen_sig&quot;,thres)
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES/>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

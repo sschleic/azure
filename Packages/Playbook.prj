@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PROJECT format-rev="10" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<NAME xsi:type="string">Playbook</NAME>
+	<ENABLED xsi:type="boolean">True</ENABLED>
+	<REPORTING xsi:type="boolean">True</REPORTING>
+	<ID xsi:type="string">d1a065e2022811eb808dfc7774225e38</ID>
+	<COMPONENTS>
+		<COMPONENT format-rev="10" xsi:type="subproject">
+			<NAME xsi:type="string">Setup</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">e6bba424022811ebb045fc7774225e38</ID>
+			<COMPONENTS>
+				<COMPONENT format-rev="1" xsi:type="projectCall">
+					<NAME xsi:type="string">Setup_playbook</NAME>
+					<ENABLED xsi:type="boolean">True</ENABLED>
+					<REPORTING xsi:type="boolean">True</REPORTING>
+					<ID xsi:type="string">cc3c7982282d11ec9b49e04f43956b81</ID>
+					<PROJECT-REF xsi:type="projectRef">
+						<PROJECT-PATH xsi:type="string">Setup_playbook.prj</PROJECT-PATH>
+					</PROJECT-REF>
+				</COMPONENT>
+			</COMPONENTS>
+		</COMPONENT>
+		<COMPONENT format-rev="10" xsi:type="subproject">
+			<NAME xsi:type="string">Tests</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">ef528efa022911eb9537fc7774225e38</ID>
+			<COMPONENTS>
+				<COMPONENT format-rev="1" xsi:type="projectCall">
+					<NAME xsi:type="string">Execute_playbook</NAME>
+					<ENABLED xsi:type="boolean">True</ENABLED>
+					<REPORTING xsi:type="boolean">True</REPORTING>
+					<ID xsi:type="string">4d47445c283a11ec8a57e04f43956b81</ID>
+					<PROJECT-REF xsi:type="projectRef">
+						<PROJECT-PATH xsi:type="string">Execute_playbook.prj</PROJECT-PATH>
+					</PROJECT-REF>
+				</COMPONENT>
+			</COMPONENTS>
+		</COMPONENT>
+		<COMPONENT format-rev="10" xsi:type="subproject">
+			<NAME xsi:type="string">Teardown</NAME>
+			<ENABLED xsi:type="boolean">True</ENABLED>
+			<REPORTING xsi:type="boolean">True</REPORTING>
+			<ID xsi:type="string">30342d36022911eb9837fc7774225e38</ID>
+			<COMPONENTS>
+				<COMPONENT format-rev="1" xsi:type="projectCall">
+					<NAME xsi:type="string">Teardown_playbook</NAME>
+					<ENABLED xsi:type="boolean">True</ENABLED>
+					<REPORTING xsi:type="boolean">True</REPORTING>
+					<ID xsi:type="string">ef0a56ae282d11ecbb86e04f43956b81</ID>
+					<PROJECT-REF xsi:type="projectRef">
+						<PROJECT-PATH xsi:type="string">Teardown_playbook.prj</PROJECT-PATH>
+					</PROJECT-REF>
+				</COMPONENT>
+			</COMPONENTS>
+		</COMPONENT>
+	</COMPONENTS>
+</PROJECT>

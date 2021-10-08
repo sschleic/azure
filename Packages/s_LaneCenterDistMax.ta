@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ANALYSIS-PACKAGE prog-version="2020.3.101705+729f1b14079e" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test analysisPackage.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<ATTRIBUTES>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Id</NAME>
+				<VALUE xsi:type="string">Veh_0045</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_IdText</NAME>
+				<VALUE xsi:type="string">s_LaneCenterDistMax</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Unit</NAME>
+				<VALUE xsi:type="string">m</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Description</NAME>
+				<VALUE xsi:type="string">Calculates the maximum lateral distance of the ego vehicle to the center of the current lane.</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerContact</NAME>
+				<VALUE xsi:type="string">kevin.kleebusch@fdtech.de</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Designer</NAME>
+				<VALUE xsi:type="string">Kevin Kleebusch</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerDepartment</NAME>
+				<VALUE xsi:type="string">CoC_01</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Type</NAME>
+				<VALUE xsi:type="string">KPI</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Status</NAME>
+				<VALUE xsi:type="string">Released</VALUE>
+			</ATTRIBUTE>
+		</ATTRIBUTES>
+		<DESCRIPTION xsi:type="string">Calculates the maximum lateral distance of the ego vehicle to the center of the current lane.
+Level: Test Case
+Unit: metre [m]</DESCRIPTION>
+		<VERSION xsi:type="string">1.0</VERSION>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" out="true" xsi:type="variable">
+			<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+			<DESCRIPTION xsi:type="string">Signal maximum value [m]</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">0</DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">isVerificationCriteria</NAME>
+			<DESCRIPTION xsi:type="string">Decider whether verification shall be done</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">True</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">logicalOperator</NAME>
+			<DESCRIPTION xsi:type="string">Operator for comparison with threshold</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">&gt;=</DVALUE>
+						</ELEMENT>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string">&gt;=</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">threshold</NAME>
+			<DESCRIPTION xsi:type="string">Threshold for verification</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="float">0.5</DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">scenarioRelativePath</NAME>
+			<DESCRIPTION xsi:type="string">Relative path to the scenario used in this KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">testMissionPath</NAME>
+			<DESCRIPTION xsi:type="string">Path of the project which executes the KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">jsonFlag</NAME>
+			<DESCRIPTION xsi:type="string">Decider if the json should be writen</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">False</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoLaneOffset</ID>
+			<XACCESS xsi:type="xaScenarioSignalValue">
+				<MAPPING-ENUM xsi:type="vtabInfoEmpty"/>
+				<CONTEXT-TYPE xsi:type="string">SCENARIO</CONTEXT-TYPE>
+				<SIGNAL-PATH xsi:type="string">RDB_PKG_ID_ROAD_POS/element_0/laneOffset</SIGNAL-PATH>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_EgoLaneWidth</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Road/Lane/Act/Width</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TRACE-ANALYSIS format-rev="3" uuid="053b53d8c7cb11e9838200e18c8fe4bc" xsi:type="traceAnalysis">
+		<NAME xsi:type="string">Analysis package</NAME>
+		<ANALYSISITEM format-rev="1" uuid="afbe05b6c1d511eabb6384fdd1b37d91" xsi:type="episode">
+			<NAME xsi:type="string">Creating the absolute Signal values</NAME>
+			<ANALYSISITEM format-rev="1" uuid="bb63525cc1d511eab69284fdd1b37d91" xsi:type="calculation">
+				<ANALYSISITEM format-rev="4" uuid="e8ac2e7af67111eabf6784fdd1b37d91" xsi:type="plotItem">
+					<NAME xsi:type="string">Plot s_LaneCenterDist</NAME>
+					<DESCRIPTION xsi:type="string">This plot shows the distance to the lane cented as a signal and as a absolute signal.</DESCRIPTION>
+					<SUB-PLOTS>
+						<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+							<TYPE xsi:type="string">common</TYPE>
+							<ENTITIES>
+								<ENTITY format-rev="1" isTraceStepSignal="False" xsi:type="plotSignalEntity">
+									<NAME xsi:type="string">s_LaneCenterDist</NAME>
+									<AXIS xsi:type="integer">0</AXIS>
+								</ENTITY>
+							</ENTITIES>
+							<AXES>
+								<AXIS xsi:type="plotAxis"/>
+							</AXES>
+						</SUB-PLOT>
+						<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+							<TYPE xsi:type="string">separate</TYPE>
+							<ENTITIES/>
+							<AXES>
+								<AXIS xsi:type="plotAxis"/>
+							</AXES>
+						</SUB-PLOT>
+						<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+							<TYPE xsi:type="string">common</TYPE>
+							<ENTITIES>
+								<ENTITY format-rev="1" isTraceStepSignal="False" xsi:type="plotSignalEntity">
+									<NAME xsi:type="string">s_LaneCenterDistAbs</NAME>
+									<AXIS xsi:type="integer">0</AXIS>
+								</ENTITY>
+							</ENTITIES>
+							<AXES>
+								<AXIS xsi:type="plotAxis"/>
+							</AXES>
+						</SUB-PLOT>
+					</SUB-PLOTS>
+					<UNUSED-SIGNALS/>
+					<SUB-CONFIG-OVERVIEW xsi:type="plotSubConfig">
+						<CONDITION xsi:type="string">NONE</CONDITION>
+						<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="integer">5</VALUE>
+						</MAX-NUMBER>
+						<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-LEFT>
+						<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-RIGHT>
+					</SUB-CONFIG-OVERVIEW>
+					<SUB-CONFIG-PARENT-CONTEXT xsi:type="plotSubConfig">
+						<CONDITION xsi:type="string">NEVER</CONDITION>
+						<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="integer">5</VALUE>
+						</MAX-NUMBER>
+						<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-LEFT>
+						<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-RIGHT>
+					</SUB-CONFIG-PARENT-CONTEXT>
+					<SUB-CONFIG-DETAILS xsi:type="plotSubConfig">
+						<CONDITION xsi:type="string">NEVER</CONDITION>
+						<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="integer">5</VALUE>
+						</MAX-NUMBER>
+						<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-LEFT>
+						<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="float">0.5</VALUE>
+						</EXPAND-XLIMITS-RIGHT>
+					</SUB-CONFIG-DETAILS>
+					<SIGNAL-NAME-TYPE xsi:type="string">generic</SIGNAL-NAME-TYPE>
+					<LEGEND-LOCATION xsi:type="integer">11</LEGEND-LOCATION>
+				</ANALYSISITEM>
+				<FORMULA xsi:type="string">abs(s_LaneCenterDist)</FORMULA>
+				<SAVE-IN xsi:type="string">s_LaneCenterDistAbs</SAVE-IN>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="053b53d9c7cb11e9b23500e18c8fe4bc" xsi:type="episode">
+			<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="1237665cc1e611eab0b184fdd1b37d91" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+				<DESCRIPTION xsi:type="string">Calculates the maximum distance of the vehicle to the lane center.</DESCRIPTION>
+				<SIGNAL-BINDING xsi:type="signalBinding">
+					<PARAMETER dkey="Signal">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">s_LaneCenterDistAbs</REF-SIGNAL-NAME>
+							<OPTIONAL-IN-TRACE xsi:type="boolean">True</OPTIONAL-IN-TRACE>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="Maximum">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CalculateMaxOwn</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="ab317a98d53611e9aec7a86daa65f3c3" xsi:type="episode">
+			<NAME xsi:type="string">CheckThreshold</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="ab317a99d53611e9aa53a86daa65f3c3" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">CheckThreshold</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="isVerificationCriteria">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">isVerificationCriteria</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="logicalOperator">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">logicalOperator</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="threshold">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">threshold</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="value">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CheckThreshold</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="1ef771ca11f211eabbb20050569b68ac" xsi:type="episode">
+			<NAME xsi:type="string">json write</NAME>
+			<DESCRIPTION xsi:type="string">Writes the json if the given parameter is true</DESCRIPTION>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="1ef771cb11f211ea98280050569b68ac" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">WriteJsonFile</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="jsonFlag">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">jsonFlag</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="projectPath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">testMissionPath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="resultValue">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">s_LaneCenterDistMax</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="scenarioRelativePath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">scenarioRelativePath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">WriteJsonFile</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<VIRTUAL-SIGNALS-MANAGER xsi:type="virtualSignalsManager">
+			<VIRTUAL-SIGNALS>
+				<VIRTUAL-SIGNAL uuid="4e01ea5ec7cc11e98db000e18c8fe4bc" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">s_LaneCenterDist</NAME>
+					<MAPPING-NAME xsi:type="string">egoLaneOffset</MAPPING-NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+					<IS-OPTIONAL xsi:type="boolean">True</IS-OPTIONAL>
+				</VIRTUAL-SIGNAL>
+				<VIRTUAL-SIGNAL uuid="da0ceb00c1d511eaa44c84fdd1b37d91" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">s_LaneCenterDistAbs</NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+					<IS-OPTIONAL xsi:type="boolean">True</IS-OPTIONAL>
+				</VIRTUAL-SIGNAL>
+				<VIRTUAL-SIGNAL uuid="6ae7ff26c1e411eab4bb84fdd1b37d91" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">egoLaneWidth</NAME>
+					<MAPPING-NAME xsi:type="string">s_EgoLaneWidth</MAPPING-NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+					<IS-OPTIONAL xsi:type="boolean">True</IS-OPTIONAL>
+				</VIRTUAL-SIGNAL>
+				<VIRTUAL-SIGNAL uuid="d06ce180c1e411eaad6784fdd1b37d91" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">maxLaneCenterDist</NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+					<IS-OPTIONAL xsi:type="boolean">True</IS-OPTIONAL>
+				</VIRTUAL-SIGNAL>
+				<VIRTUAL-SIGNAL uuid="5399e12ec1e511eaa80784fdd1b37d91" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">differenceToTolerance</NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+				</VIRTUAL-SIGNAL>
+			</VIRTUAL-SIGNALS>
+		</VIRTUAL-SIGNALS-MANAGER>
+	</TRACE-ANALYSIS>
+</ANALYSIS-PACKAGE>

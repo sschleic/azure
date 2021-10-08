@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PACKAGE format-rev="7" prog-version="2021.3.116659+ca0cd4c506b0" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test package.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<DESCRIPTION xsi:type="string"/>
+		<VERSION xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">SendTclCommand</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">SendTclCommand</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">StopCarmaker</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">StopCarmaker</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TESTSTEPS xsi:type="testCase">
+		<TESTSTEP format-rev="4" id="423afaf4-2260-4a66-87eb-493d03a16e5c" xsi:type="tsJob">
+			<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+			<JOB-PARAMETER xsi:type="tsJobParameter">
+				<NAME xsi:type="string">tclCommand</NAME>
+				<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="string">Movie quit</VALUE>
+				</EXPRESSION>
+			</JOB-PARAMETER>
+			<JOB-PARAMETER xsi:type="tsJobParameter">
+				<NAME xsi:type="string">timeout</NAME>
+			</JOB-PARAMETER>
+		</TESTSTEP>
+		<TESTSTEP format-rev="4" id="f28b9b1e-13e5-4ea9-b5e4-126cebcb6959" xsi:type="tsJob">
+			<MAPPING-REF xsi:type="string">StopCarmaker</MAPPING-REF>
+		</TESTSTEP>
+	</TESTSTEPS>
+</PACKAGE>

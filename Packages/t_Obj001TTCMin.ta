@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ANALYSIS-PACKAGE prog-version="2020.3.101705+729f1b14079e" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test analysisPackage.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<ATTRIBUTES>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Status</NAME>
+				<VALUE xsi:type="string">Review</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerContact</NAME>
+				<VALUE xsi:type="string">matthias.lippold@fdtech.de</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Designer</NAME>
+				<VALUE xsi:type="string">Matthias Lippold</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">DesignerDepartment</NAME>
+				<VALUE xsi:type="string">CoC_01</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Type</NAME>
+				<VALUE xsi:type="string">KPI</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">Description</NAME>
+				<VALUE xsi:type="string">Calculates the minimal overall TTC of Obj001.</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Unit</NAME>
+				<VALUE xsi:type="string">s</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_IdText</NAME>
+				<VALUE xsi:type="string">t_Obj001TTCMin</VALUE>
+			</ATTRIBUTE>
+			<ATTRIBUTE xsi:type="attributeInst">
+				<NAME xsi:type="string">KPI_Id</NAME>
+				<VALUE xsi:type="string">Veh_0319</VALUE>
+			</ATTRIBUTE>
+		</ATTRIBUTES>
+		<DESCRIPTION xsi:type="string">Calculates the minimal overall TTC of Obj001.
+Level: Test Case
+Unit: seconds [s]
+
+Extension 22/04/2021 (Franziska Flack):
+- change of default value of threshold from 0.5 to 3.0
+- add a step to write the TTC signal values into a csv file
+- add a step to plot the TTC signal</DESCRIPTION>
+		<VERSION xsi:type="string">1.0</VERSION>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" out="true" xsi:type="variable">
+			<NAME xsi:type="string">t_Obj001TTCMin</NAME>
+			<DESCRIPTION xsi:type="string">Signal minimum value [s]</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">0</DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">isVerificationCriteria</NAME>
+			<DESCRIPTION xsi:type="string">Decider whether verification shall be done</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">True</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">logicalOperator</NAME>
+			<DESCRIPTION xsi:type="string">Operator for comparison with threshold</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">&gt;=</DVALUE>
+						</ELEMENT>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string">&gt;=</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">threshold</NAME>
+			<DESCRIPTION xsi:type="string">Threshold for verification (initial value was 0.5)</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="float">3.0</DATA>
+				<TEXTDATA xsi:type="string">3.0</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">scenarioRelativePath</NAME>
+			<DESCRIPTION xsi:type="string">Relative path to the scenario used in this KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">testMissionPath</NAME>
+			<DESCRIPTION xsi:type="string">Path of the project which executes the KPI</DESCRIPTION>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="en_US">
+							<DVALUE xsi:type="string"/>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">en_US</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">jsonFlag</NAME>
+			<DESCRIPTION xsi:type="string">Decider if the json should be writen</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">False</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">csvFlag</NAME>
+			<DESCRIPTION xsi:type="string">Decider if the csv file should be writen</DESCRIPTION>
+			<DEFAULT-VALUE xsi:type="aBoolean">
+				<OBJECT xsi:type="string">False</OBJECT>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">t_Obj001TTC</ID>
+			<XACCESS xsi:type="xaReadWriteValueVariable">
+				<MAPPING-ENUM xsi:type="vtabInfoEmpty"/>
+			</XACCESS>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TRACE-ANALYSIS format-rev="3" uuid="85ddf08ab81011e9a11c00e18c8fe4bc" xsi:type="traceAnalysis">
+		<NAME xsi:type="string">Analysis package</NAME>
+		<ANALYSISITEM format-rev="1" uuid="928f9cecb81011e9a28900e18c8fe4bc" xsi:type="episode">
+			<NAME xsi:type="string">t_Obj001TTCMin</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="3815df68b81111e9975b00e18c8fe4bc" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">Calculate t_Obj001TTCMin</NAME>
+				<DESCRIPTION xsi:type="string">Calculates the minimal overall TTC of Obj001</DESCRIPTION>
+				<SIGNAL-BINDING xsi:type="signalBinding">
+					<PARAMETER dkey="Signal">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">t_Obj001TTC</REF-SIGNAL-NAME>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="Minimum">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">t_Obj001TTCMin</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CalculateMinOwn</PROTOTYPE-ID>
+			</ANALYSISITEM>
+			<ANALYSISITEM format-rev="4" uuid="8f769a9ea34c11eba141482ae39213ee" xsi:type="plotItem">
+				<NAME xsi:type="string">Plot t_Obj001TTC</NAME>
+				<SUB-PLOTS>
+					<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+						<TYPE xsi:type="string">common</TYPE>
+						<ENTITIES>
+							<ENTITY format-rev="1" isTraceStepSignal="False" xsi:type="plotSignalEntity">
+								<NAME xsi:type="string">t_Obj001TTC</NAME>
+								<AXIS xsi:type="integer">0</AXIS>
+							</ENTITY>
+						</ENTITIES>
+						<AXES>
+							<AXIS xsi:type="plotAxis"/>
+						</AXES>
+					</SUB-PLOT>
+					<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+						<TYPE xsi:type="string">separate</TYPE>
+						<ENTITIES/>
+						<AXES>
+							<AXIS xsi:type="plotAxis"/>
+						</AXES>
+					</SUB-PLOT>
+					<SUB-PLOT format-rev="1" xsi:type="plotSubPlot">
+						<TYPE xsi:type="string">common</TYPE>
+						<ENTITIES/>
+						<AXES/>
+					</SUB-PLOT>
+				</SUB-PLOTS>
+				<UNUSED-SIGNALS/>
+				<SUB-CONFIG-OVERVIEW xsi:type="plotSubConfig">
+					<CONDITION xsi:type="string">NONE</CONDITION>
+					<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="integer">5</VALUE>
+					</MAX-NUMBER>
+					<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-LEFT>
+					<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-RIGHT>
+				</SUB-CONFIG-OVERVIEW>
+				<SUB-CONFIG-PARENT-CONTEXT xsi:type="plotSubConfig">
+					<CONDITION xsi:type="string">NEVER</CONDITION>
+					<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="integer">5</VALUE>
+					</MAX-NUMBER>
+					<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-LEFT>
+					<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-RIGHT>
+				</SUB-CONFIG-PARENT-CONTEXT>
+				<SUB-CONFIG-DETAILS xsi:type="plotSubConfig">
+					<CONDITION xsi:type="string">NEVER</CONDITION>
+					<MAX-NUMBER format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="integer">5</VALUE>
+					</MAX-NUMBER>
+					<EXPAND-XLIMITS-LEFT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-LEFT>
+					<EXPAND-XLIMITS-RIGHT format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="float">0.5</VALUE>
+					</EXPAND-XLIMITS-RIGHT>
+				</SUB-CONFIG-DETAILS>
+				<SIGNAL-NAME-TYPE xsi:type="string">generic</SIGNAL-NAME-TYPE>
+				<LEGEND-LOCATION xsi:type="integer">11</LEGEND-LOCATION>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="c1df8f4c4ef811ea857d1c4d7077dff7" xsi:type="episode">
+			<NAME xsi:type="string">CheckThreshold</NAME>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="c1df8f4d4ef811eaa3501c4d7077dff7" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">CheckThreshold</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="isVerificationCriteria">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">isVerificationCriteria</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="logicalOperator">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">logicalOperator</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="threshold">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">threshold</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="value">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">t_Obj001TTCMin</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">CheckThreshold</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="c1df8f4e4ef811eaa29c1c4d7077dff7" xsi:type="episode">
+			<NAME xsi:type="string">json write</NAME>
+			<DESCRIPTION xsi:type="string">Writes the json if the given parameter is true</DESCRIPTION>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="c1df8f4f4ef811eaa6451c4d7077dff7" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">WriteJsonFile</NAME>
+				<SIGNAL-BINDING xsi:type="signalBinding"/>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="jsonFlag">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">jsonFlag</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="projectPath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">testMissionPath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="resultValue">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">t_Obj001TTCMin</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="scenarioRelativePath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">scenarioRelativePath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">WriteJsonFile</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<ANALYSISITEM format-rev="1" uuid="471a5a52a34c11eba411482ae39213ee" xsi:type="episode">
+			<NAME xsi:type="string">csv write</NAME>
+			<DESCRIPTION xsi:type="string">Writes the csv file if the parameter csvFlag is True</DESCRIPTION>
+			<ANALYSISITEM format-rev="2" poolRev="6" uuid="4cb9bc0ea34c11ebb047482ae39213ee" xsi:type="referencingTraceStep">
+				<NAME xsi:type="string">WriteCSVFile</NAME>
+				<DESCRIPTION xsi:type="string">Writes the timestamps and TTC signal values into a csv file</DESCRIPTION>
+				<SIGNAL-BINDING xsi:type="signalBinding">
+					<PARAMETER dkey="signal">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">t_Obj001TTC</REF-SIGNAL-NAME>
+							<OPTIONAL-IN-TRACE xsi:type="boolean">True</OPTIONAL-IN-TRACE>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING>
+				<PARAM-ASSIGNMENTS xsi:type="trcpParameterAssignments">
+					<PARAM-ASSIGNMENTS>
+						<ASSIGNMENT dkey="csvFlag">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">csvFlag</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="projectPath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">testMissionPath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+						<ASSIGNMENT dkey="scenarioRelativePath">
+							<DVALUE xsi:type="varBaseExpression">
+								<NAME xsi:type="string">scenarioRelativePath</NAME>
+							</DVALUE>
+						</ASSIGNMENT>
+					</PARAM-ASSIGNMENTS>
+				</PARAM-ASSIGNMENTS>
+				<REPORT-CONFIG xsi:type="trcpReportConfig">
+					<MAX-SPOTS xsi:type="integer">100</MAX-SPOTS>
+					<MIN-DELTA xsi:type="float">0.0</MIN-DELTA>
+				</REPORT-CONFIG>
+				<PROTOTYPE-ID xsi:type="string">WriteCSVFile</PROTOTYPE-ID>
+			</ANALYSISITEM>
+		</ANALYSISITEM>
+		<VIRTUAL-SIGNALS-MANAGER xsi:type="virtualSignalsManager">
+			<VIRTUAL-SIGNALS>
+				<VIRTUAL-SIGNAL uuid="6336bd900c3011ea8766a86daa663077" xsi:type="virtualSessionSignal">
+					<NAME xsi:type="string">t_Obj001TTC</NAME>
+					<MAPPING-NAME xsi:type="string">t_Obj001TTC</MAPPING-NAME>
+					<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+				</VIRTUAL-SIGNAL>
+			</VIRTUAL-SIGNALS>
+		</VIRTUAL-SIGNALS-MANAGER>
+	</TRACE-ANALYSIS>
+</ANALYSIS-PACKAGE>

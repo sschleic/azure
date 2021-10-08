@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="25e31480f3b111e8a7dde04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="97f77ca1f3b111e89610e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">dist_m</NAME>
+			<DESCRIPTION xsi:type="string">Distance to object in meters</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+		<PARAMETER uuid="9cd8e05ef3b111e8a087e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">v_ego</NAME>
+			<DESCRIPTION xsi:type="string">speed of the ego vehicle in m/s</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+		<PARAMETER uuid="9e9a8d8ff3b111e88465e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">dive_in_depth_obj_s</NAME>
+			<DESCRIPTION xsi:type="string">Dive in depth to object in seconds</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="d0c989b0f3b111e8b18de04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="string">Error</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    # Get values from the input
+    err=parameters[&quot;Error&quot;]
+    dist=event.GetValue(&quot;dist_m&quot;)
+    v=event.GetValue(&quot;v_ego&quot;)
+    time=event.GetTime()
+    # If signal has no value set to default value of 10 s
+    if (v is None or dist is None):
+        dataContainer.EmitSignal(time,&quot;dive_in_depth_obj_s&quot;,10)
+    # If signal is below error value set to default value of 10 s
+    elif (math.fabs(v) &lt;= err or math.fabs(dist) &lt;= err ):
+        dataContainer.EmitSignal(time,&quot;dive_in_depth_obj_s&quot;,10)
+    # If both signals have values use the correct calculation
+    else:
+        dataContainer.EmitSignal(time,&quot;dive_in_depth_obj_s&quot;,(dist/v))
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">dist_m</ELEMENT>
+				<ELEMENT xsi:type="string">v_ego</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

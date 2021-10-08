@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TOOLING format-rev="2" prog-version="2021.3.116659+ca0cd4c506b0" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test tooling.xsd">
+	<TOOL-HOSTS>
+		<TOOL-HOST xsi:type="toolHost">
+			<URL xsi:type="string">local</URL>
+			<BASE-PATH xsi:type="string">&lt;workspace&gt;</BASE-PATH>
+		</TOOL-HOST>
+	</TOOL-HOSTS>
+	<TOOLS>
+		<TOOL id="CarMaker-Linux01" xsi:type="tool">
+			<TOOL-HOST xsi:type="string">local</TOOL-HOST>
+			<TOOL-NAME xsi:type="string">CarMaker-Linux</TOOL-NAME>
+			<START-OPTION xsi:type="integer">1</START-OPTION>
+			<START-PRIORITY xsi:type="integer">0</START-PRIORITY>
+			<SETTINGS xsi:type="dynamicPropertySet">
+				<PROPERTY format-rev="1" name="Headless" propertyType="bool" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">False</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="StartCarmaker" propertyType="bool" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">False</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="carMakerBasePath" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">/home/sschleich/GIT/cmvcar-docker/docker/work/fdt.carmaker.workspace</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="ipAddress" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">172.16.20.39</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="libPath" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">export LD_LIBRARY_PATH=&quot;/home/sschleich/GIT/cmvcar-docker/docker/CarMaker-VCar/usr/lib/x86_64-linux-gnu&quot;</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="sshKeyPath" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">C:\Users\sschleich\.ssh\id_rsa</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="sshUsername" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">sschleich</VALUE>
+				</PROPERTY>
+				<PROPERTY format-rev="1" name="startScriptPath" propertyType="string" readonly="false" xsi:type="_property">
+					<VALUE xsi:type="string">/opt/ipg/bin/CM</VALUE>
+				</PROPERTY>
+			</SETTINGS>
+		</TOOL>
+	</TOOLS>
+	<PORTS/>
+	<TOOL-DESCRIPTORS>
+		<TOOL-DESCRIPTOR dkey="CarMaker-Linux01">
+			<DVALUE format-rev="2" xsi:type="toolDescriptor">
+				<TOOL-NAME xsi:type="string">CarMaker-Linux</TOOL-NAME>
+				<PROVIDES/>
+				<START-PRIORITY-HINT xsi:type="integer">0</START-PRIORITY-HINT>
+				<PROPERTIES xsi:type="propertyDescriptorSet">
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">ipAddress</NAME>
+						<DISPLAY-NAME xsi:type="string">IP address of CarMaker GUI host</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">The IP adress of the host where the CarMaker GUI to automate is located.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<DEFAULT xsi:type="string">127.0.0.1</DEFAULT>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">carMakerBasePath</NAME>
+						<DISPLAY-NAME xsi:type="string">CarMaker project path</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">Base path of CarMaker project on Linux host.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">sshPort</NAME>
+						<DISPLAY-NAME xsi:type="string">SSH port</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">SSH port of the CarMaker Linux host.</DESCRIPTION>
+						<TYPE xsi:type="string">int</TYPE>
+						<DEFAULT xsi:type="string">22</DEFAULT>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">sshUsername</NAME>
+						<DISPLAY-NAME xsi:type="string">SSH username</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">User name to log into the CarMaker Linux host via SSH.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">sshKeyPath</NAME>
+						<DISPLAY-NAME xsi:type="string">SSH private key path</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">Absolute path to the private key file on the local machine.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">startScriptPath</NAME>
+						<DISPLAY-NAME xsi:type="string">Start Script Path</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">Absolute path of the start script file on the machine.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">libPath</NAME>
+						<DISPLAY-NAME xsi:type="string">CarMaker-Extension Library Path</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">Absolut path of the CarMakerExtension Libary on the machine.</DESCRIPTION>
+						<TYPE xsi:type="string">string</TYPE>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">Headless</NAME>
+						<DISPLAY-NAME xsi:type="string">Starting CarMaker on a virtual display</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">If true, starts CarMaker on virtual display via &quot;Xvfb&quot;</DESCRIPTION>
+						<TYPE xsi:type="string">bool</TYPE>
+						<DOMAIN>
+							<ELEMENT xsi:type="string">False</ELEMENT>
+							<ELEMENT xsi:type="string">True</ELEMENT>
+						</DOMAIN>
+						<DEFAULT xsi:type="string">True</DEFAULT>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">Remote</NAME>
+						<DISPLAY-NAME xsi:type="string">Remote Session</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">If true, opens SSH session with username and password</DESCRIPTION>
+						<TYPE xsi:type="string">bool</TYPE>
+						<DOMAIN>
+							<ELEMENT xsi:type="string">False</ELEMENT>
+							<ELEMENT xsi:type="string">True</ELEMENT>
+						</DOMAIN>
+						<DEFAULT xsi:type="string">False</DEFAULT>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+					<PROP xsi:type="propertyDescriptor">
+						<NAME xsi:type="string">StartCarmaker</NAME>
+						<DISPLAY-NAME xsi:type="string">Start CarMaker</DISPLAY-NAME>
+						<DISPLAY-LEVEL xsi:type="integer">0</DISPLAY-LEVEL>
+						<DESCRIPTION xsi:type="string">If true, starts and connects to CarMaker with the start of the configuration</DESCRIPTION>
+						<TYPE xsi:type="string">bool</TYPE>
+						<DOMAIN>
+							<ELEMENT xsi:type="string">False</ELEMENT>
+							<ELEMENT xsi:type="string">True</ELEMENT>
+						</DOMAIN>
+						<DEFAULT xsi:type="string">True</DEFAULT>
+						<READONLY xsi:type="boolean">False</READONLY>
+					</PROP>
+				</PROPERTIES>
+				<JOBS xsi:type="jobDescriptorSet">
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">SendTclCommand</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">tclCommand</NAME>
+								<DISPLAY-NAME xsi:type="string">TCL Command</DISPLAY-NAME>
+								<TYPE xsi:type="string">string</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">timeout</NAME>
+								<DISPLAY-NAME xsi:type="string">Timeout</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Timeout in seconds</DESCRIPTION>
+								<TYPE xsi:type="string">object</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Sends a TCL command to CarMaker and returns its response.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">LoadScenario</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">scenarioName</NAME>
+								<DISPLAY-NAME xsi:type="string">Scenario name</DISPLAY-NAME>
+								<TYPE xsi:type="string">string</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Loads a given CarMaker scenario.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">StartSimulation</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet"/>
+						<DESCRIPTION xsi:type="string">Starts the CarMaker simulation.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">StopSimulation</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">stopImmediately</NAME>
+								<DISPLAY-NAME xsi:type="string">Stop immediately</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Stops the simulation immediately if true, else it waits for the simulation to finish.</DESCRIPTION>
+								<TYPE xsi:type="string">bool</TYPE>
+								<DOMAIN>
+									<ELEMENT xsi:type="string">False</ELEMENT>
+									<ELEMENT xsi:type="string">True</ELEMENT>
+								</DOMAIN>
+								<DEFAULT xsi:type="string">True</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">timeout</NAME>
+								<DISPLAY-NAME xsi:type="string">Timeout</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Timeout in seconds if waiting for simulation end.</DESCRIPTION>
+								<TYPE xsi:type="string">int</TYPE>
+								<DEFAULT xsi:type="string">1000</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Stops the CarMaker simulation.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">ChangeParameter</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">parameterName</NAME>
+								<DISPLAY-NAME xsi:type="string">Parameter name</DISPLAY-NAME>
+								<TYPE xsi:type="string">string</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">parameterValue</NAME>
+								<DISPLAY-NAME xsi:type="string">Parameter value</DISPLAY-NAME>
+								<TYPE xsi:type="string">string</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Changes a named value parameter.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">SendSshCommand</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">sshCommand</NAME>
+								<DISPLAY-NAME xsi:type="string">SSH Command</DISPLAY-NAME>
+								<TYPE xsi:type="string">string</TYPE>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Sends a SSH command and returns its response.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">TransferTrace</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">recordingFileName</NAME>
+								<DISPLAY-NAME xsi:type="string">Recording file name</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Name of the recording file (file type .erg)</DESCRIPTION>
+								<TYPE xsi:type="string">string</TYPE>
+								<DEFAULT xsi:type="string">.erg</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">waitTime</NAME>
+								<DISPLAY-NAME xsi:type="string">Include waiting period</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Include a waiting period of 5x30sec</DESCRIPTION>
+								<TYPE xsi:type="string">bool</TYPE>
+								<DOMAIN>
+									<ELEMENT xsi:type="string">False</ELEMENT>
+									<ELEMENT xsi:type="string">True</ELEMENT>
+								</DOMAIN>
+								<DEFAULT xsi:type="string">True</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Transfers the tracefile from the remote host to the local recording folder.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">TransferScenarios</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">scenarioFolder</NAME>
+								<DISPLAY-NAME xsi:type="string">Path to the scenario folder</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Absolute path to the the scenario folder (will be moved recursive!)</DESCRIPTION>
+								<TYPE xsi:type="string">string</TYPE>
+								<DEFAULT xsi:type="string">C:\\PATH\\TO\\FOLDER</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">roadFolder</NAME>
+								<DISPLAY-NAME xsi:type="string">Path to the topology folder</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Absolute path to the the topology folder (will be moved recursive!)</DESCRIPTION>
+								<TYPE xsi:type="string">string</TYPE>
+								<DEFAULT xsi:type="string">C:\\PATH\\TO\\FOLDER</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Transfer the scenarios to the CarMaker machine</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">EnableRecording</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet"/>
+						<DESCRIPTION xsi:type="string">Configures CarMaker to start recording everything to an .erg file.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">StartCarmaker</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet"/>
+						<DESCRIPTION xsi:type="string">Starts Carmaker.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">StopCarmaker</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet"/>
+						<DESCRIPTION xsi:type="string">Stops Carmaker</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+					<JOB format-rev="2" xsi:type="jobDescriptor">
+						<NAME xsi:type="string">TransferFile</NAME>
+						<PARAMETERS xsi:type="parameterDescriptorSet">
+							<PARAM xsi:type="propertyDescriptor">
+								<NAME xsi:type="string">filePath</NAME>
+								<DISPLAY-NAME xsi:type="string">Path to the file which will be copied</DISPLAY-NAME>
+								<DESCRIPTION xsi:type="string">Path of the file</DESCRIPTION>
+								<TYPE xsi:type="string">string</TYPE>
+								<DEFAULT xsi:type="string">PATH//TO//MOVIE.mp4</DEFAULT>
+								<READONLY xsi:type="boolean">False</READONLY>
+							</PARAM>
+						</PARAMETERS>
+						<DESCRIPTION xsi:type="string">Transfers the file from the remote host to the local recording folder.</DESCRIPTION>
+						<RETURN xsi:type="propertyDescriptor">
+							<NAME xsi:type="string">result</NAME>
+							<TYPE xsi:type="string">string</TYPE>
+							<READONLY xsi:type="boolean">False</READONLY>
+						</RETURN>
+					</JOB>
+				</JOBS>
+			</DVALUE>
+		</TOOL-DESCRIPTOR>
+	</TOOL-DESCRIPTORS>
+	<PORT-DESCRIPTORS/>
+</TOOLING>

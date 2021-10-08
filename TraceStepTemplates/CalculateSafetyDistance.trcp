@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="c50487de329211e489680024e8a0e567" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">calculates safety distance according to formula found in FDTech_SimulationReport_ACC.docx
+</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="e3d9e700329211e49bcc0024e8a0e567" xsi:type="signalDescription">
+			<NAME xsi:type="string">EgoVelocity</NAME>
+			<DESCRIPTION xsi:type="string">velocity signal of ego vehicle</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+		<PARAMETER uuid="6931ef804fa111e9ba83181dea9b1253" xsi:type="signalDescription">
+			<NAME xsi:type="string">ObjVelocity</NAME>
+			<DESCRIPTION xsi:type="string">velocity signal of other object</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+		</PARAMETER>
+		<PARAMETER uuid="e3f3feae329211e496ad0024e8a0e567" xsi:type="signalDescription">
+			<NAME xsi:type="string">SafetyDistance</NAME>
+			<DESCRIPTION xsi:type="string">safety distance, which is either a calculated value or an externally defined residual distance (in case the calculated distance &lt; residual distance)</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="16befb004f9f11e9a91e181dea9b1253" xsi:type="parameterDescription">
+			<NAME xsi:type="string">ResidualDistance</NAME>
+			<DESCRIPTION xsi:type="string">externally defined residual distance between ego and object that represents the gap at standstill</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">INTEGER</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="d13940b04fa111e98b42181dea9b1253" xsi:type="parameterDescription">
+			<NAME xsi:type="string">TimeDelay</NAME>
+			<DESCRIPTION xsi:type="string">externally defined time delay before braking</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">INTEGER</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="eacd1ab04fa111e99078181dea9b1253" xsi:type="parameterDescription">
+			<NAME xsi:type="string">EgoBrakingCapabilityMax</NAME>
+			<DESCRIPTION xsi:type="string">maximum assumed braking capability of ego vehicle</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">INTEGER</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="fe5541c04fa111e99aa5181dea9b1253" xsi:type="parameterDescription">
+			<NAME xsi:type="string">ObjBrakingCapabilityMax</NAME>
+			<DESCRIPTION xsi:type="string">maximum assumed braking capability of object</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">INTEGER</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    # get value and time from signal
+    velocityEgo = event.GetValue(&quot;EgoVelocity&quot;)
+    velocityObj = event.GetValue(&quot;ObjVelocity&quot;) 				
+    time  = event.GetTime()
+
+    # calculate safety distance
+    # if calculated safety distance &lt; residual distance, use residual distance as safety distance instead
+    safetyDistance = max( ( velocityEgo * parameters[&quot;TimeDelay&quot;] ) + ( ( velocityEgo ** 2 ) / 2 * parameters[&quot;EgoBrakingCapabilityMax&quot;] ) - ( ( velocityObj ** 2 ) / 2 * parameters[&quot;ObjBrakingCapabilityMax&quot;] ), parameters[&quot;ResidualDistance&quot;])
+    
+    # emit signal
+    dataContainer.EmitSignal(time, &quot;SafetyDistance&quot;, safetyDistance)
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">EgoVelocity</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PACKAGE format-rev="7" prog-version="2021.3.116659+ca0cd4c506b0" xmlns="http://www.tracetronic.de/xml/ecu-test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tracetronic.de/xml/ecu-test package.xsd">
+	<INFORMATION format-rev="2" xsi:type="packageInfo">
+		<DESCRIPTION xsi:type="string"/>
+		<VERSION xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-ACTION-FIELD-TEMPLATE xsi:type="string"/>
+		<ALTERNATE-CALL-REPRESENTATION-EXPECTATION-FIELD-TEMPLATE xsi:type="string"/>
+	</INFORMATION>
+	<VARIABLES xsi:type="variableContainer">
+		<VARIABLE format-rev="1" xsi:type="variable">
+			<NAME xsi:type="string">localresult</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<COMPLEX-DATA xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">lokaleergebnis.erg</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</COMPLEX-DATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">v_init</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">10</DATA>
+				<TEXTDATA xsi:type="string">10</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">a_target</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">-2</DATA>
+				<TEXTDATA xsi:type="string">-2</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">d_init</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">30</DATA>
+				<TEXTDATA xsi:type="string">30</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">t_target</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">0</DATA>
+				<TEXTDATA xsi:type="string">0</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+		<VARIABLE format-rev="1" in="true" xsi:type="variable">
+			<NAME xsi:type="string">v_target</NAME>
+			<DESCRIPTION xsi:type="string"/>
+			<DEFAULT-VALUE format-rev="1" xsi:type="value">
+				<DATA xsi:type="integer">10</DATA>
+				<TEXTDATA xsi:type="string">10</TEXTDATA>
+			</DEFAULT-VALUE>
+		</VARIABLE>
+	</VARIABLES>
+	<MAPPING format-rev="1" xsi:type="localMappingSpace">
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">Car/v</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/v</SIGNAL-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">ChangeParameter</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">ChangeParameter</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">SendTclCommand</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">SendTclCommand</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">StartSimulation</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">StartSimulation</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">TransferTrace</ID>
+			<XACCESS xsi:type="xaJob">
+				<TOOL-ID xsi:type="string">CarMaker-Linux01</TOOL-ID>
+				<JOB-NAME xsi:type="string">TransferTrace</JOB-NAME>
+			</XACCESS>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">a_LatEgo</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/ay</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">a_LongEgo</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/ax</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoAccTargetSpeed</ID>
+			<DESCRIPTION xsi:type="string">Desired speed for the ACC controller</DESCRIPTION>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">AccelCtrl/ACC/DesiredSpd</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoAccelerationHeading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/YawAcc</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoHeading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Yaw</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoLaneID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Road/Lane/Act/LaneId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoLaneOffset</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Road/Path/DevDist</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoPositionX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/tx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoPositionY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/ty</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">egoVelocityHeading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/YawVel</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001AccelerationX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/a_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001AccelerationY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/a_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001Heading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/rz</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001ID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/LinkObjId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001LaneID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/Lane/Act/LaneId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001LaneOffset</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/tRoad</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001PositionX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/tx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001PositionY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/ty</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001VelocityX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/v_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj001VelocityY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target01/v_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002AccelerationX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/a_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002AccelerationY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/a_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002Heading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/rz</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002ID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/LinkObjId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002LaneID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/Lane/Act/LaneId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002LaneOffset</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/tRoad</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002PositionX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/tx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002PositionY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/ty</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002VelocityX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/v_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj002VelocityY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target02/v_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003AccelerationX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/a_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003AccelerationY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/a_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003Heading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/rz</SIGNAL-NAME>
+			</XACCESS>
+			<AUTO-GENERATED xsi:type="boolean">False</AUTO-GENERATED>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003ID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/LinkObjId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003LaneID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/Lane/Act/LaneId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003LaneOffset</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/tRoad</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003PositionX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/tx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003PositionY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/ty</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003VelocityX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/v_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj003VelocityY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target03/v_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004AccelerationX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/a_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004AccelerationY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/a_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004Heading</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/rz</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004ID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/LinkObjId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004LaneID</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/Lane/Act/LaneId</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004LaneOff</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/tRoad</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004PositionX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/tx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004PositionY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/ty</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004VelocityX</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/v_0/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">obj004VelocityY</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Traffic/Target04/v_0/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_EgoLaneWidth</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Road/Lane/Act/Width</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LatObj001Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target01/NearPnt/ds/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LatObj002Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target02/NearPnt/ds/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LatObj003Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target03/NearPnt/ds/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LatObj004Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target04/NearPnt/ds/y</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LongObj001Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target01/NearPnt/ds/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object01</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LongObj002Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target02/NearPnt/ds/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object02</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LongObj003Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target03/NearPnt/ds/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object03</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">s_LongObj004Dist</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Sensor/Object/RadarECUTEST/Obj/Target04/NearPnt/ds/x</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Object04</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">simTime</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Time</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">speedLimit</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">DM/SpeedLimit</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">traveledDistanceEgo</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/Distance</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">v_LatEgo</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/vy</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+		<MAPPING-ITEM format-rev="2" xsi:type="mappingItem">
+			<ID xsi:type="string">v_LongEgo</ID>
+			<XACCESS format-rev="1" xsi:type="xaTraceFileSignal">
+				<SIGNAL-NAME xsi:type="string">Car/vx</SIGNAL-NAME>
+			</XACCESS>
+			<CATEGORY xsi:type="string">Ego</CATEGORY>
+		</MAPPING-ITEM>
+	</MAPPING>
+	<TRACE-RECORDING format-rev="2" xsi:type="recordingManager">
+		<SIGNAL-GROUPS>
+			<ELEMENT format-rev="2" xsi:type="signalGroup">
+				<NAME xsi:type="string">Signalgruppe</NAME>
+				<DESCRIPTION xsi:type="string"/>
+				<SIGNALS>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">Car/v</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">a_LatEgo</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">a_LongEgo</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoAccTargetSpeed</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoAccelerationHeading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoHeading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoLaneID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoLaneOffset</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoPositionX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoPositionY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">egoVelocityHeading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_EgoLaneWidth</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">simTime</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">speedLimit</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">traveledDistanceEgo</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">v_LatEgo</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">v_LongEgo</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001AccelerationX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001AccelerationY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001Heading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001ID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001LaneID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001LaneOffset</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001PositionX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001PositionY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001VelocityX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj001VelocityY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LatObj001Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LongObj001Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002AccelerationX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002AccelerationY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002Heading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002ID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002LaneID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002LaneOffset</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002PositionX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002PositionY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002VelocityX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj002VelocityY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LatObj002Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LongObj002Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003AccelerationX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003AccelerationY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003Heading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003ID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003LaneID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003LaneOffset</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003PositionX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003PositionY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003VelocityX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj003VelocityY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LatObj003Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LongObj003Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004AccelerationX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004AccelerationY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004Heading</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004ID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004LaneID</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004LaneOff</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004PositionX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004PositionY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004VelocityX</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">obj004VelocityY</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LatObj004Dist</MAPPING-REF>
+					</ELEMENT>
+					<ELEMENT xsi:type="signal">
+						<MAPPING-REF xsi:type="string">s_LongObj004Dist</MAPPING-REF>
+					</ELEMENT>
+				</SIGNALS>
+			</ELEMENT>
+		</SIGNAL-GROUPS>
+		<RECORDING-GROUP>
+			<ELEMENT format-rev="3" xsi:type="recordingGroup">
+				<NAME xsi:type="string">Aufnahmegruppe von Signalgruppe</NAME>
+				<UUID xsi:type="string">8e5c07ca281f11ecab35e04f43956b81</UUID>
+				<SIGNAL-GROUP-REF>Signalgruppe</SIGNAL-GROUP-REF>
+			</ELEMENT>
+		</RECORDING-GROUP>
+		<SYNCHRONISATION-CONFIG xsi:type="syncConfig"/>
+	</TRACE-RECORDING>
+	<TESTSTEPS xsi:type="testCase">
+		<TESTSTEP format-rev="2" id="3258ebfa-ad9e-4bb9-b96e-ff91f5fc4fab" name="TsPrecondBlock" xsi:type="utility-fd32d18b-c16d-45ca-9934-f8bffe11fcc3">
+			<ACTION xsi:type="I18NItem">
+				<MULTILANGDATA>
+					<ELEMENT dkey="de_DE">
+						<DVALUE xsi:type="string">Precondition</DVALUE>
+					</ELEMENT>
+					<ELEMENT dkey="en_US">
+						<DVALUE xsi:type="string">Precondition</DVALUE>
+					</ELEMENT>
+				</MULTILANGDATA>
+				<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+			</ACTION>
+			<TESTSTEP format-rev="3" id="70caa52d-ed30-4d64-bd0d-a4366176ecff" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+				<ACTION xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">Set parameters</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</ACTION>
+				<TESTSTEP format-rev="4" id="f7329513-ec5b-4a7d-94b1-6ad83eb95f83" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">ChangeParameter</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterName</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">v_init</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterValue</NAME>
+						<EXPRESSION xsi:type="functionBaseExpression">
+							<COMPONENT xsi:type="varBaseExpression">
+								<NAME xsi:type="string">str</NAME>
+							</COMPONENT>
+							<ARGUMENTS>
+								<ARGUMENT xsi:type="varBaseExpression">
+									<NAME xsi:type="string">v_init</NAME>
+								</ARGUMENT>
+							</ARGUMENTS>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="c49cbc9c-3e74-4928-9f6d-5dad81b64504" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">ChangeParameter</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterName</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">a_target</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterValue</NAME>
+						<EXPRESSION xsi:type="functionBaseExpression">
+							<COMPONENT xsi:type="varBaseExpression">
+								<NAME xsi:type="string">str</NAME>
+							</COMPONENT>
+							<ARGUMENTS>
+								<ARGUMENT xsi:type="varBaseExpression">
+									<NAME xsi:type="string">a_target</NAME>
+								</ARGUMENT>
+							</ARGUMENTS>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="493db866-45ee-4aca-85df-83985983c998" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">ChangeParameter</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterName</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">d_init</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterValue</NAME>
+						<EXPRESSION xsi:type="functionBaseExpression">
+							<COMPONENT xsi:type="varBaseExpression">
+								<NAME xsi:type="string">str</NAME>
+							</COMPONENT>
+							<ARGUMENTS>
+								<ARGUMENT xsi:type="varBaseExpression">
+									<NAME xsi:type="string">d_init</NAME>
+								</ARGUMENT>
+							</ARGUMENTS>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="122f8804-5d6f-4c6b-943d-e9b0f965ba24" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">ChangeParameter</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterName</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">v_target</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterValue</NAME>
+						<EXPRESSION xsi:type="functionBaseExpression">
+							<COMPONENT xsi:type="varBaseExpression">
+								<NAME xsi:type="string">str</NAME>
+							</COMPONENT>
+							<ARGUMENTS>
+								<ARGUMENT xsi:type="varBaseExpression">
+									<NAME xsi:type="string">v_target</NAME>
+								</ARGUMENT>
+							</ARGUMENTS>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="b0750255-4587-4e1e-b1b8-b95c9ef8bac1" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">ChangeParameter</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterName</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">t_target</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">parameterValue</NAME>
+						<EXPRESSION xsi:type="functionBaseExpression">
+							<COMPONENT xsi:type="varBaseExpression">
+								<NAME xsi:type="string">str</NAME>
+							</COMPONENT>
+							<ARGUMENTS>
+								<ARGUMENT xsi:type="varBaseExpression">
+									<NAME xsi:type="string">t_target</NAME>
+								</ARGUMENT>
+							</ARGUMENTS>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+			</TESTSTEP>
+		</TESTSTEP>
+		<TESTSTEP format-rev="3" id="33082d18-336f-4f77-9268-e843339bf6b4" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+			<ACTION xsi:type="I18NItem">
+				<MULTILANGDATA>
+					<ELEMENT dkey="de_DE">
+						<DVALUE xsi:type="string">Action</DVALUE>
+					</ELEMENT>
+				</MULTILANGDATA>
+				<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+			</ACTION>
+			<TESTSTEP format-rev="3" id="97b3c33c-cce5-4368-a803-84834a2eb39e" name="TsBlock" xsi:type="utility-2752ad1e-4fef-11dc-81d4-0013728784ee">
+				<ACTION xsi:type="I18NItem">
+					<MULTILANGDATA>
+						<ELEMENT dkey="de_DE">
+							<DVALUE xsi:type="string">Simulation</DVALUE>
+						</ELEMENT>
+					</MULTILANGDATA>
+					<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+				</ACTION>
+				<TESTSTEP format-rev="4" id="351251fb-0f7f-4e03-a386-6da6cb156ad9" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">StartSimulation</MAPPING-REF>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="2e87b4bf-c1b1-4bcc-9a4e-798f5ee6e426" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">WaitForStatus running</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">timeout</NAME>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+				<TESTSTEP format-rev="4" id="954b36b6-1de2-440c-83d2-d36bf971d026" xsi:type="tsJob">
+					<MAPPING-REF xsi:type="string">SendTclCommand</MAPPING-REF>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">tclCommand</NAME>
+						<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+							<VALUE xsi:type="string">WaitForStatus idle</VALUE>
+						</EXPRESSION>
+					</JOB-PARAMETER>
+					<JOB-PARAMETER xsi:type="tsJobParameter">
+						<NAME xsi:type="string">timeout</NAME>
+					</JOB-PARAMETER>
+				</TESTSTEP>
+			</TESTSTEP>
+		</TESTSTEP>
+		<TESTSTEP format-rev="2" id="d84510a8-7d5b-4d18-8e70-9748851033e6" name="TsPostcondBlock" xsi:type="utility-0d2ac4dc-1d8f-4182-81d1-a5d5ca74a44f">
+			<ACTION xsi:type="I18NItem">
+				<MULTILANGDATA>
+					<ELEMENT dkey="de_DE">
+						<DVALUE xsi:type="string">Postcondition</DVALUE>
+					</ELEMENT>
+					<ELEMENT dkey="en_US">
+						<DVALUE xsi:type="string">Postcondition</DVALUE>
+					</ELEMENT>
+				</MULTILANGDATA>
+				<INITIAL-LANGUAGE xsi:type="string">de_DE</INITIAL-LANGUAGE>
+			</ACTION>
+			<EFFECT-TEST-RESULT xsi:type="boolean">False</EFFECT-TEST-RESULT>
+			<TESTSTEP format-rev="4" id="de19ee29-11f4-49ab-ac88-53be90990ac1" xsi:type="tsJob">
+				<MAPPING-REF xsi:type="string">TransferTrace</MAPPING-REF>
+				<VARIABLE-REFS>
+					<VARIABLE-NAME dkey="default">
+						<DVALUE xsi:type="string">localresult</DVALUE>
+					</VARIABLE-NAME>
+				</VARIABLE-REFS>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">recordingFileName</NAME>
+					<EXPRESSION xsi:type="varBaseExpression">
+						<NAME xsi:type="string">localresult</NAME>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+				<JOB-PARAMETER xsi:type="tsJobParameter">
+					<NAME xsi:type="string">waitTime</NAME>
+					<EXPRESSION format-rev="1" xsi:type="valueBaseExpression">
+						<VALUE xsi:type="boolean">True</VALUE>
+					</EXPRESSION>
+				</JOB-PARAMETER>
+			</TESTSTEP>
+			<TESTSTEP format-rev="2" id="e3e601b9-4bdd-4d9d-8981-78b6d209677f" name="TsAddTrace" xsi:type="utility-0f50a0f0-e269-11df-a984-001143176b04">
+				<NAME xsi:type="string"/>
+				<PATH xsi:type="varBaseExpression">
+					<NAME xsi:type="string">localresult</NAME>
+				</PATH>
+				<RECORDING-GROUP-REF-BY-UUID>8e5c07ca281f11ecab35e04f43956b81</RECORDING-GROUP-REF-BY-UUID>
+			</TESTSTEP>
+		</TESTSTEP>
+	</TESTSTEPS>
+	<TRACE-ANALYSES format-rev="1" xsi:type="traceAnalyses">
+		<TRACE-ANALYSIS format-rev="3" uuid="0a018052282911ecbf6be04f43956b81" xsi:type="traceAnalysis">
+			<NAME xsi:type="string">Traceanalyse 1</NAME>
+			<ANALYSISITEM format-rev="1" uuid="92b9d917282911ecb508e04f43956b81" xsi:type="referencingEpisode">
+				<NAME xsi:type="string">Episode</NAME>
+				<PACKAGE-REFERENCE format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="string">v_EgoMin.ta</VALUE>
+				</PACKAGE-REFERENCE>
+				<TRACE-ANALYSIS-REFERENCE xsi:type="string">Analysis package</TRACE-ANALYSIS-REFERENCE>
+				<SIGNAL-BINDING-IN xsi:type="signalBinding">
+					<PARAMETER dkey="v_Ego">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">Car_v</REF-SIGNAL-NAME>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING-IN>
+			</ANALYSISITEM>
+			<ANALYSISITEM format-rev="1" uuid="fa300157282911ec9ac4e04f43956b81" xsi:type="referencingEpisode">
+				<NAME xsi:type="string">Episode</NAME>
+				<PACKAGE-REFERENCE format-rev="1" xsi:type="valueBaseExpression">
+					<VALUE xsi:type="string">v_EgoMax.ta</VALUE>
+				</PACKAGE-REFERENCE>
+				<TRACE-ANALYSIS-REFERENCE xsi:type="string">Analysis package</TRACE-ANALYSIS-REFERENCE>
+				<SIGNAL-BINDING-IN xsi:type="signalBinding">
+					<PARAMETER dkey="v_Ego">
+						<DVALUE format-rev="1" xsi:type="signalParameter">
+							<REF-SIGNAL-NAME xsi:type="string">Car_v</REF-SIGNAL-NAME>
+						</DVALUE>
+					</PARAMETER>
+				</SIGNAL-BINDING-IN>
+			</ANALYSISITEM>
+			<VIRTUAL-SIGNALS-MANAGER xsi:type="virtualSignalsManager">
+				<VIRTUAL-SIGNALS>
+					<VIRTUAL-SIGNAL uuid="f44037a8282911ec970de04f43956b81" xsi:type="virtualSessionSignal">
+						<NAME xsi:type="string">Car_v</NAME>
+						<SIGNAL-FOR-ANALYSIS xsi:type="recordingSignalForAnalysis">
+							<KEY xsi:type="string">Car/v</KEY>
+							<SOURCE-TYPE xsi:type="string">RECORDING-GROUP</SOURCE-TYPE>
+							<SOURCE-REF xsi:type="string">8e5c07ca281f11ecab35e04f43956b81</SOURCE-REF>
+						</SIGNAL-FOR-ANALYSIS>
+						<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+					</VIRTUAL-SIGNAL>
+				</VIRTUAL-SIGNALS>
+			</VIRTUAL-SIGNALS-MANAGER>
+		</TRACE-ANALYSIS>
+	</TRACE-ANALYSES>
+</PACKAGE>

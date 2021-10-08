@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="799977ee1ca411e0887d0024d7351970" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Creates a histogram plot which counts the values of the given signal </DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="994b10cf1ca511e09d430024d7351970" xsi:type="signalDescription">
+			<NAME xsi:type="string">Signal</NAME>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList"/>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+
+    '''
+    import matplotlib
+    if matplotlib.get_backend() != &quot;agg&quot;:
+        matplotlib.use(&quot;agg&quot;)
+    '''
+    dataContainer.xValues = []
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    from matplotlib import pyplot
+    import numpy
+    import os
+    
+    print dataContainer.xValues
+    
+    pyplot.clf()
+    pyplot.hist(dataContainer.xValues)
+    
+    imagePath = os.path.join(os.getenv(&quot;temp&quot;), &quot;img02.png&quot;)
+    
+    scaleFactor = 1.0
+    pyplot.savefig(imagePath, dpi=100*scaleFactor)
+    dataContainer.ReportImage(imagePath)
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">OnSignal</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def OnSignal(event, hold, dataContainer, parameters, report):
+
+    dataContainer.xValues.append(event.GetValue('Signal'))
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">Signal</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

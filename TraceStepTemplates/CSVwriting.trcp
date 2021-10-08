@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="b2f8e19ef3b711e8a0d5e04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="unicode">Takes the parameters and fills the CSV file in a specified way readable for the DOE tool of choice.</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="d3736540f3b711e8b3c1e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="unicode">gen_sig</NAME>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<OPTIONAL-SIGNAL xsi:type="boolean">True</OPTIONAL-SIGNAL>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="da705600f3b711e8a2c6e04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">testcaseCounter</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="67d6609e7c6311e997460050569b3b85" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">diveInDepthObj001MinimumSeconds</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="694077f07c6311e992930050569b3b85" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">diveInDepthObj002MinimumSeconds</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="69ba89f07c6311e994340050569b3b85" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">diveInDepthObj003MinimumSeconds</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="6a0faed17c6311e9a4c70050569b3b85" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">diveInDepthObj004MinimumSeconds</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="6a495c707c6311e9b41e0050569b3b85" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">egoAccelerationLateralMaximum</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="5cc5d05e806911e9a9af00e18c8fe4bc" xsi:type="parameterDescription">
+			<NAME xsi:type="unicode">egoAccelerationLongitudinalMaximum</NAME>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="unicode">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="unicode">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Finalize(dataContainer, parameters, report):
+    import os
+    from application.api.Api import Api
+    api = Api()
+    #fetching the parameters and assigning them to internal names
+    testcaseCounter = parameters[&quot;testcaseCounter&quot;]
+    dive001 = parameters[&quot;diveInDepthObj001MinimumSeconds&quot;]
+    dive002 = parameters[&quot;diveInDepthObj002MinimumSeconds&quot;]
+    dive003 = parameters[&quot;diveInDepthObj003MinimumSeconds&quot;]
+    dive004 = parameters[&quot;diveInDepthObj004MinimumSeconds&quot;]
+    egoLat = parameters[&quot;egoAccelerationLateralMaximum&quot;]
+    egoLong = parameters[&quot;egoAccelerationLongitudinalMaximum&quot;]
+    #getting the csv path
+    WRKPath = api.GetSetting(&quot;workspacePath&quot;)
+    filePath = os.path.join(WRKPath,'Files/results.txt')
+    #open the file for editing
+    file = open(filePath,&quot;a&quot;)
+    #filling the file with the information
+    file.write(&quot;\n&quot;)
+    file.write(&quot;%s&quot; % testcaseCounter)
+    #egoLat
+    if egoLat == 9999 or egoLat == 'None' or egoLat == None:
+        file.write(&quot;,nan&quot;)
+    elif egoLat != 9999:
+        file.write(&quot;,%s&quot; % egoLat)
+    #egoLong
+    if (egoLong == 9999 or egoLong == 'None' or egoLong == None):
+        file.write(&quot;,nan&quot;)
+    elif egoLong != 9999:
+        file.write(&quot;,%s&quot; % egoLong)
+    #dive001
+    if (dive001 == 9999 or dive001 == 'None' or dive001 == None):
+        file.write(&quot;,nan&quot;)
+    elif dive001 != 9999:
+        file.write(&quot;,%s&quot; % dive001)
+    #dive002
+    if (dive002 == 9999 or dive002 == 'None' or dive002 == None):
+        file.write(&quot;,nan&quot;)
+    elif dive002 != 9999:
+        file.write(&quot;,%s&quot; % dive002)
+    #dive003
+    if (dive003 == 9999 or dive003 == 'None' or dive003 == None):
+        file.write(&quot;,nan&quot;)
+    elif dive003 != 9999:
+        file.write(&quot;,%s&quot; % dive003)
+    #dive004
+    if (dive004 == 9999 or dive004 == 'None' or dive004 == None):
+        file.write(&quot;,nan&quot;)
+    elif dive004 != 9999:
+        file.write(&quot;,%s&quot; % dive004)
+    file.close()
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="unicode">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="unicode">#Funktionskopf generiert, nicht editieren!
+def Next(event, hold, dataContainer, parameters, report):
+    pass
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES/>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>

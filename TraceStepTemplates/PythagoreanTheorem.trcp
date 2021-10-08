@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TRACE-STEP-PROTOTYPE format-rev="1" uuid="db7a7ee1f24a11e8a6cae04f43953795" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trcpEventPythonII">
+	<DESCRIPTION xsi:type="string">Vergleich ob Eingangsignale der Berechnung 0 sind</DESCRIPTION>
+	<SIGNALS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="69649ab0f24b11e890e9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">SideA</NAME>
+			<DESCRIPTION xsi:type="string">Beschleunigung des EGO Fahrzeug im Globalen System in x-Richtung</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="683fd451f24c11e8be6ee04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">SideB</NAME>
+			<DESCRIPTION xsi:type="string">Beschleunigung des EGO Fahrzeug im Globalen System in y-Richtung</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+		</PARAMETER>
+		<PARAMETER uuid="c260ebb0f24f11e894d9e04f43953795" xsi:type="signalDescription">
+			<NAME xsi:type="string">BaseSideC</NAME>
+			<DESCRIPTION xsi:type="string">Heading des Beschleunigungsvektors</DESCRIPTION>
+			<EVENT-TYPE xsi:type="string">PHY</EVENT-TYPE>
+			<DIRECTION xsi:type="string">OUT</DIRECTION>
+		</PARAMETER>
+	</SIGNALS>
+	<PARAMETERS xsi:type="trcpParameterDescriptionList">
+		<PARAMETER uuid="f774495ef31b11e88254e04f43953795" xsi:type="parameterDescription">
+			<NAME xsi:type="string">Error</NAME>
+			<DESCRIPTION xsi:type="string">Schwellwert für Berücksichtigung</DESCRIPTION>
+			<PARAMETER-TYPE xsi:type="string">FLOAT</PARAMETER-TYPE>
+		</PARAMETER>
+	</PARAMETERS>
+	<INIT-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Init</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Init(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</INIT-FUNCTION>
+	<FINALIZE-FUNCTION xsi:type="pyFunctionII">
+		<NAME xsi:type="string">Finalize</NAME>
+		<PARAMETER-NAMES/>
+		<CODE xsi:type="pyCode">
+			<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Finalize(dataContainer, parameters, report):
+    pass
+</SOURCE>
+		</CODE>
+	</FINALIZE-FUNCTION>
+	<FUNCTIONS>
+		<ELEMENT xsi:type="pyEventFunctionII">
+			<NAME xsi:type="string">Next</NAME>
+			<PARAMETER-NAMES/>
+			<CODE xsi:type="pyCode">
+				<SOURCE xsi:type="string">#Head of function is generated, do not edit!
+def Next(event, hold, dataContainer, parameters, report):
+    err=parameters[&quot;Error&quot;]
+    sa=event.GetValue(&quot;SideA&quot;)
+    sb=event.GetValue(&quot;SideB&quot;)
+    time=event.GetTime()
+    if (math.fabs(sa)&lt;=err or math.fabs(sb)&lt;=err) :
+        dataContainer.EmitSignal(time,&quot;BaseSideC&quot;,0)
+    else:
+        dataContainer.EmitSignal(time,&quot;BaseSideC&quot;,(math.sqrt((sa*sa)+(sb*sb))))
+</SOURCE>
+			</CODE>
+			<SIGNAL-NAMES>
+				<ELEMENT xsi:type="string">SideA</ELEMENT>
+				<ELEMENT xsi:type="string">SideB</ELEMENT>
+			</SIGNAL-NAMES>
+		</ELEMENT>
+	</FUNCTIONS>
+</TRACE-STEP-PROTOTYPE>
